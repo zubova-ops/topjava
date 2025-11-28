@@ -22,8 +22,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static ru.javawebinar.topjava.repository.inmemory.InMemoryUserRepository.ADMIN_ID;
-import static ru.javawebinar.topjava.repository.inmemory.InMemoryUserRepository.USER_ID;
+import static ru.javawebinar.topjava.UserTestData.ADMIN_ID;
+import static ru.javawebinar.topjava.UserTestData.USER_ID;
 
 @Repository
 public class InMemoryMealRepository implements MealRepository {
@@ -68,7 +68,7 @@ public class InMemoryMealRepository implements MealRepository {
         return meals != null && meals.remove(id) != null;
     }
 
-   @Override
+    @Override
     public Meal get(int id, int userId) {
         Map<Integer, Meal> meals = usersMealsMap.get(userId);
         return meals == null ? null : meals.get(id);
