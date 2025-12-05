@@ -42,20 +42,19 @@
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
           p:packagesToScan="ru.javawebinar.**.model">
-        <!--p:persistenceUnitName="persistenceUnit">-->
 
-        <property name="jpaPropertyMap">
-            <map>
-                <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
-                <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}" value="${hibernate.use_sql_comments}"/>
-                <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl.auto}"/>-->
-            </map>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
+                <!-- <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop> -->
+            </props>
         </property>
 
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
-                  p:showSql="${jpa.showSql}">
-            </bean>
+                  p:showSql="${jpa.showSql}"/>
         </property>
     </bean>
 
